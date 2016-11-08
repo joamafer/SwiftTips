@@ -8,4 +8,12 @@
 Source: https://twitter.com/shaps/status/785786934375448576
 
 2) Command to check if your app uses Advertising Identifier:
-```fgrep -R advertisingIdentifier .```
+
+``fgrep -R advertisingIdentifier .``
+
+3) Files in Documents folder.
+
+Files placed in the Documents folder are automatically backed up to iCloud.
+The backup process may not start instantly which is why you do not see your app's iCloud storage.
+Use this code to exclude a file from the auto backup.
+``try! filePath.setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)``
