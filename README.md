@@ -7,4 +7,5 @@
 
 Source: https://twitter.com/shaps/status/785786934375448576
 
-2) 
+2) Command to check if your app uses Advertising Identifier:
+```fgrep -R advertisingIdentifier .```
