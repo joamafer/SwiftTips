@@ -1,3 +1,6 @@
+Swift and Xcode tips
+List of curiosities and tips I have been finding lately.
+
 1) Why debug with `print` when you can `dump`?
 
 `dump` uses Mirror for introspection.
@@ -54,5 +57,11 @@ In Swift you can name loops so when you want to break one you can specify it by 
 ![naming loops](NamingLoops.jpg)
 
 Source: https://files.slack.com/files-pri/T036BGQE6-F2CRTPJU8/slack_for_ios_upload.jpg
+
+9) Int over UInt:
+
+Use UInt only when you specifically need an unsigned integer type with the same size as the platform’s native word size. If this is not the case, Int is preferred, even when the values to be stored are known to be non-negative. A consistent use of Int for integer values aids code interoperability, avoids the need to convert between different number types, and matches integer type inference, as described in Type Safety and Type Inference.
+
+Source: https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-XID_411
 
 
