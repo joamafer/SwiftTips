@@ -1,12 +1,12 @@
-Swift and Xcode tips
-List of curiosities and tips I have been finding lately.
+# Swift and Xcode tips
+
+List of curiosities and utilities you might not now about Swift and Xcode.
 
 ## Why debug with `print` when you can `dump`?
 
-`dump` uses Mirror for introspection.
+`dump` uses Mirror for introspection. It is really useful in order to show the tree of properties with their values. I really find if useful when printing mapped objects from a JSON file.
 
-![print vs dump](CuetDMrXYAA_KA2.jpg)
-![print vs dump](slack-imgs.com.jpeg)
+![print vs dump](dump.png)
 
 Source: https://twitter.com/shaps/status/785786934375448576
 
@@ -84,3 +84,12 @@ Did you know you can create an array of NSLayoutConstraints as part of the same 
 Have you ever wondered what's the difference between Leading and Left? There's a good reason to differenciate them and it's the language reading direction. Right now you are reading this text from left to right, but for example arabic language is read from right to left. Xcode automatically does the hard work for you from the preferences, but you still need to pin the outlets to the leading and trailing edges when you need that element to mirror. Keep in mind that for those RTL (Right to Left) languages, leading and trailing will switch, so everything you pinned to the leading will follow that rule. However, left and right edges are universal and won't change, so just pin the outlets to the left and right if you are sure you don't want that outlet to mirror.
 
 ![leading and trailing](Leading&Trailing.png)
+
+## Avoid NSObject and @objc to Improve Performance
+
+Swift allows us to extend classes from NSObject to get Objective-C runtime features for an object. It also allows us to annotate Swift methods with @objc to allow the methods to be used by the Objective-C runtime.
+
+Supporting the Objective-C runtime means that method calls are going to be using dynamic dispatch instead of static or vtable dispatch. This end result is that methods that support the Objective-C runtime have a four times performance penalty when called. In practical usage, the performance hit may be negligible but the cool thing is that armed with this knowledge, we now know that method execution in Swift is four times faster than Objective-C.
+
+Source:
+https://savvyapps.com/blog/swift-tips-for-developers
