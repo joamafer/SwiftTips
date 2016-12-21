@@ -1,7 +1,7 @@
 Swift and Xcode tips
 List of curiosities and tips I have been finding lately.
 
-1) Why debug with `print` when you can `dump`?
+## Why debug with `print` when you can `dump`?
 
 `dump` uses Mirror for introspection.
 
@@ -10,11 +10,11 @@ List of curiosities and tips I have been finding lately.
 
 Source: https://twitter.com/shaps/status/785786934375448576
 
-2) Command to check if your app uses Advertising Identifier:
+## Command to check if your app uses Advertising Identifier:
 
 ``fgrep -R advertisingIdentifier .``
 
-3) Files in Documents folder.
+## Files in Documents folder.
 
 Files placed in the Documents folder are automatically backed up to iCloud.
 The backup process may not start instantly which is why you do not see your app's iCloud storage.
@@ -24,7 +24,7 @@ Use this code to exclude a file from the auto backup.
 
 Source: https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
 
-4) Example about strong and weak variables:
+## Example about strong and weak variables:
 
 Imagine our object is a dog, and that the dog wants to run away (be deallocated).
 
@@ -34,23 +34,23 @@ Weak pointers, on the other hand, are like little kids pointing at the dog and s
 
 As soon as the last strong pointer (leash) no longer points to an object, the object will be deallocated, and all weak pointers will be zeroed out.
 
-5) Example about atomic and nonatomic
+## Example about atomic and nonatomic
 
 Suppose there is an atomic string property called "name", and if you call [self setName:@"A"] from thread A, call [self setName:@"B"] from thread B, and call [self name] from thread C, then all operation on different thread will be performed *serially* which means if one thread is executing setter or getter, then other threads will wait. This makes property "name" read/write safe but if another thread D calls [name release] simultaneously then this operation might produce a crash because there is no setter/getter call involved here. Which means an object is read/write safe (ATOMIC) but not thread safe as another threads can simultaneously send any type of messages to the object. Developer should ensure thread safety for such objects.
 
 If the property "name" was nonatomic, then all threads in above example - A,B, C and D will execute simultaneously producing any unpredictable result. In case of atomic, Either one of A, B or C will execute first but D can still execute in *parallel*.
 
-6) ``layoutIfNeeded`` before animating constraints changes:
+## ``layoutIfNeeded`` before animating constraints changes:
 
 When animating constraint changes, Apple recommends to run layoutIfNeeded before the constraint changes, so if something stills needs to be animated, that will clean it.
 
 Source: https://developer.apple.com/library/watchos/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutbyExample/AutoLayoutbyExample.html#//apple_ref/doc/uid/TP40010853-CH5-SW15
 
-7) Auto-generate doc comment:
+## Auto-generate doc comment:
 
 In Xcode 8, place the cursor above a method or function & press "⌥ + ⌘ + /" to auto-generate a doc comment.
 
-8) Naming loops:
+## Naming loops:
 
 In Swift you can name loops so when you want to break one you can specify it by name.
 
@@ -58,15 +58,15 @@ In Swift you can name loops so when you want to break one you can specify it by 
 
 Source: https://files.slack.com/files-pri/T036BGQE6-F2CRTPJU8/slack_for_ios_upload.jpg
 
-9) Int over UInt:
+## Int over UInt:
 
 Use UInt only when you specifically need an unsigned integer type with the same size as the platform’s native word size. If this is not the case, Int is preferred, even when the values to be stored are known to be non-negative. A consistent use of Int for integer values aids code interoperability, avoids the need to convert between different number types, and matches integer type inference, as described in Type Safety and Type Inference.
 
 Source: https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-XID_411
 
-10) Array of NSLayoutConstraints as IBOutlets: Outlet Collection
+## Outlet Collection
 
-Did you know you can create an array of IBOutlets as part of the same property? This is called outlet collection and it's really useful in terms of deactivating/activating and removing/adding constraints at the same time with just one line of code. Also, in case you want to access to a specific constraint of that array, you can do it by accessing the element through the tag. For example:
+Did you know you can create an array of NSLayoutConstraints as part of the same property? This is called outlet collection and it's really useful in terms of deactivating/activating and removing/adding constraints at the same time with just one line of code. Also, in case you want to access to a specific constraint of that array, you can do it by accessing the element through the tag. For example:
 
 ```swift
 @IBOutlet var widthConstraints: [NSLayoutConstraint]!
@@ -79,7 +79,7 @@ Did you know you can create an array of IBOutlets as part of the same property? 
 }
 ```
 
-11) Leading/Trailing vs Left/Right
+## Leading/Trailing vs Left/Right
 
 Have you ever wondered what's the difference between Leading and Left? There's a good reason to differenciate them and it's the language reading direction. Right now you are reading this text from left to right, but for example arabic language is read from right to left. Xcode automatically does the hard work for you from the preferences, but you still need to pin the outlets to the leading and trailing edges when you need that element to mirror. Keep in mind that for those RTL (Right to Left) languages, leading and trailing will switch, so everything you pinned to the leading will follow that rule. However, left and right edges are universal and won't change, so just pin the outlets to the left and right if you are sure you don't want that outlet to mirror.
 
