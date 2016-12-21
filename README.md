@@ -64,4 +64,23 @@ Use UInt only when you specifically need an unsigned integer type with the same 
 
 Source: https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-XID_411
 
+10) Array of NSLayoutConstraints as IBOutlets: Outlet Collection
 
+Did you know you can create an array of IBOutlets as part of the same property? This is called outlet collection and it's really useful in terms of deactivating/activating and removing/adding constraints at the same time with just one line of code. Also, in case you want to access to a specific constraint of that array, you can do it by accessing the element through the tag. For example:
+
+```swift
+@IBOutlet var widthConstraints: [NSLayoutConstraint]!
+
+@IBAction func imageTapped(sender: UITapGestureRecognizer) {
+    guard let tag = sender.view?.tag else { return }
+    
+    let widthConstraint = widthConstraints[tag]
+    print("The constraint: \(widthConstraint) represents the width for the outlet referenced by the tag \(tag)")
+}
+```
+
+11) Leading/Trailing vs Left/Right
+
+Have you ever wondered what's the difference between Leading and Left? There's a good reason to differenciate them and it's the language reading direction. Right now you are reading this text from left to right, but for example arabic language is read from right to left. Xcode automatically does the hard work for you from the preferences, but you still need to pin the outlets to the leading and trailing edges when you need that element to mirror. Keep in mind that for those RTL (Right to Left) languages, leading and trailing will switch, so everything you pinned to the leading will follow that rule. However, left and right edges are universal and won't change, so just pin the outlets to the left and right if you are sure you don't want that outlet to mirror.
+
+![leading and trailing](Leading&Trailing.png)
