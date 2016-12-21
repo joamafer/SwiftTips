@@ -91,5 +91,12 @@ Swift allows us to extend classes from NSObject to get Objective-C runtime featu
 
 Supporting the Objective-C runtime means that method calls are going to be using dynamic dispatch instead of static or vtable dispatch. This end result is that methods that support the Objective-C runtime have a four times performance penalty when called. In practical usage, the performance hit may be negligible but the cool thing is that armed with this knowledge, we now know that method execution in Swift is four times faster than Objective-C.
 
-Source:
-https://savvyapps.com/blog/swift-tips-for-developers
+Source: https://savvyapps.com/blog/swift-tips-for-developers
+
+## Double-Length Pseudolanguage
+
+The preview assistant editor is important in order how see how things will look in different configurations but also in different languages. If you have localizations already added to the storyboard and/or nib file, you can open the preview from the editor mode and they will show up in the bottom right corner. Here you will find a handy language called double-length Pseudolanguage, which will double every string you have in the interface builder and show you how the layout will respond to longer strings.
+
+![Double length pseudolanguage](DoublePseudolanguage.png)
+
+Source: https://videos.raywenderlich.com/courses/auto-layout/lessons/5
