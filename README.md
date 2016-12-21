@@ -6,7 +6,7 @@ List of curiosities and utilities you might not now about Swift and Xcode.
 
 `dump` uses Mirror for introspection. It is really useful in order to show the tree of properties with their values. I really find if useful when printing mapped objects from a JSON file.
 
-![print vs dump](dump.png)
+![print vs dump](Dump.png)
 
 Source: https://twitter.com/shaps/status/785786934375448576
 
