@@ -4,7 +4,7 @@ List of curiosities and utilities you might not now about Swift and Xcode.
 
 ## Why debug with `print` when you can `dump`?
 
-`dump` uses Mirror for introspection. It is really useful in order to show the tree of properties with their values. I really find if useful when printing mapped objects from a JSON file.
+`dump` uses Mirror for introspection. It's really useful in order to show the tree of properties with their values. It makes my day every time I print mapped objects from a JSON file.
 
 ![print vs dump](Dump.png)
 
@@ -17,14 +17,14 @@ Source: https://twitter.com/shaps/status/785786934375448576
 ## Files in Documents folder.
 
 Files placed in the Documents folder are automatically backed up to iCloud.
-The backup process may not start instantly which is why you do not see your app's iCloud storage.
-Use this code to exclude a file from the auto backup.
+The backup process may not start instantly which is why you don't see your app's iCloud storage.
+Use this code to exclude a file from the auto backup:
 
 ``try! filePath.setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)``
 
 Source: https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
 
-## Example about strong and weak variables:
+## Example about `strong` and `weak` properties:
 
 Imagine our object is a dog, and that the dog wants to run away (be deallocated).
 
