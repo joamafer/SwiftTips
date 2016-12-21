@@ -100,3 +100,7 @@ The preview assistant editor is important in order how see how things will look 
 ![Double length pseudolanguage](DoublePseudolanguage.png)
 
 Source: https://videos.raywenderlich.com/courses/auto-layout/lessons/5
+
+## translatesAutoresizingMaskIntoConstraints
+
+This property must be set to false if you create your own constraints by code. If you forget it, you will get errors in the debug console that your constraints are conflicting with the ones created by translates autoresizing mask into constraints.
